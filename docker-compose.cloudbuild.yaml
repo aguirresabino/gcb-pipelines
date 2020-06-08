@@ -20,6 +20,8 @@ services:
         networks:
             - gcb-pipelines
         tty: true
+        depends_on:
+            - db
 
 networks:
     gcb-pipelines:
