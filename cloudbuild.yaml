@@ -7,4 +7,5 @@ steps:
       args: ['ps']
     - id: "Run tests"
       name: 'gcr.io/cloud-builders/docker'
+      waitFor: ['Run docker-compose']
       args: ['exec', '-t', 'gcb-pipelines', 'yarn', 'test']
