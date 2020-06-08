@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+    db:
+        image: "postgres:alpine"
+        container_name: "gcb-pipelines-db"
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+            - POSTGRES_DB=test
+        networks:
+            - gcb-pipelines
+    
+    gcb-pipelines:
+        container_name: gcb-pipelines
+        build: .
+        image: gcb-pipelines
+        volumes:
+            - .:/app
+        networks:
+            - gcb-pipelines
+        tty: true
+
+networks:
+    gcb-pipelines:
