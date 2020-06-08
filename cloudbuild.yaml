@@ -4,6 +4,7 @@ steps:
       args: ['-f', 'docker-compose.cloudbuild.yaml', 'up', '-d']
     - id: 'run-docker-ps'
       name: 'gcr.io/cloud-builders/docker'
+      waitFor: ['run-docker-compose']
       args: ['ps']
     - id: 'run-tests'
       name: 'gcr.io/cloud-builders/docker'
