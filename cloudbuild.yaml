@@ -1,11 +1,11 @@
 steps:
-    - id: 'Run docker-compose'
+    - id: 'run-docker-compose'
       name: 'gcr.io/$PROJECT_ID/docker-compose:latest'
       args: ['-f', 'docker-compose.cloudbuild.yaml', 'up', '-d']
-    - id: 'Run docker ps'
+    - id: 'run-docker-ps'
       name: 'gcr.io/cloud-builders/docker'
       args: ['ps']
-    - id: 'Run tests'
+    - id: 'run-tests'
       name: 'gcr.io/cloud-builders/docker'
-      waitFor: ['Run docker-compose', 'Run docker ps']
+      waitFor: ['run-docker-compose', 'run-docker-ps']
       args: ['exec', '-t', 'gcb-pipelines', 'yarn', 'test']
