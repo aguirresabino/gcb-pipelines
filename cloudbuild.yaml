@@ -5,3 +5,6 @@ steps:
     - id: "Run docker ps"
       name: 'gcr.io/cloud-builders/docker'
       args: ['ps']
+    - id: "Run docker ps"
+      name: 'gcr.io/cloud-builders/docker'
+      args: ['exec', '-t', 'gcb-pipelines', 'yarn', 'test']
